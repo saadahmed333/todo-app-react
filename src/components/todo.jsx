@@ -1,3 +1,4 @@
+import "./todo.css";
 import "./firebaseConfig";
 import {
   collection,
@@ -18,34 +19,47 @@ function Todo() {
     await addDoc(collection(db, "Todo"), {
       todos: todoo.current.value,
     });
+    todoo.current.value = "";
     console.log("Submit");
   };
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const q = query(collection(db, "Todo"));
       let arr = [];
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        arr.push(doc.data().todos)
+        arr.push(doc.data().todos);
       });
-      setlist(arr)
+      setlist(arr);
     };
-    fetchData()
+    fetchData();
   }, [list]);
-  
+
+  // const Deletll =  async () => {
+  //   console.log("saad")
+  //   await deleteDoc(doc(db, "Todo"));
+  // }
   return (
     <>
-      <div>
-        <input type="text" ref={todoo} />
-        <Button onClick={addTodo} />
-      </div>
-      <div>
-        {list.map((val, ind) => (
-          <div key={ind}>
-            <p>{val}</p>
+      <div className="todos">
+        <div className="todos-div">
+          <div className="todosInput">
+            <input type="text" ref={todoo} />
+            <Button onClick={addTodo} />
+            <button>Delete All</button>
           </div>
-        ))}
+          <ul className="todo-Show">
+            {list.map((val, ind) => (
+              <div key={ind}>
+                <li>
+                  <span>{val}</span>
+                  <button>Delete Todo</button>
+                </li>
+              </div>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
