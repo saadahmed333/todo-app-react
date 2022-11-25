@@ -16,7 +16,7 @@ function Todo() {
   const [list, setlist] = useState([]);
 
   const addTodo = async () => {
-    await addDoc(collection(db, "Todo"), {
+    await addDoc(collection(db, "Todos"), {
       todos: todoo.current.value,
     });
     todoo.current.value = "";
