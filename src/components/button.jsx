@@ -1,8 +1,8 @@
 
 
-function Button() {
+function Button({onClick}) {
     return (
-     <button>Add Todo</button>
+     <button onClick={onClick}>Add Todo</button>
     )
 }
 
