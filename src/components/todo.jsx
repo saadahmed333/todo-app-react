@@ -6,6 +6,9 @@ import {
   query,
   where,
   getDocs,
+  doc,
+  deleteDoc,
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
 import { db } from "./firebaseConfig";
 import { useRef, useState, useEffect } from "react";
@@ -15,31 +18,44 @@ function Todo() {
   const todoo = useRef();
   const [list, setlist] = useState([]);
 
+
+
+
   const addTodo = async () => {
-    await addDoc(collection(db, "Todos"), {
+    await addDoc(collection(db, "Todo"), {
       todos: todoo.current.value,
     });
     todoo.current.value = "";
     console.log("Submit");
+   
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
+  let uids;
+  let ids = [];
+  let arr = [];
+  // useEffect(() => {
+    window.onload = fetchData = async () => {
       const q = query(collection(db, "Todo"));
-      let arr = [];
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        arr.push(doc.data().todos);
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          arr.push(doc.data().todos);
+          uids = doc.id;
+          console.log(doc.data().todos)
+        });
+          setlist(arr);
       });
-      setlist(arr);
-    };
-    fetchData();
-  }, [list]);
+    }
+    // window.onload = fetchData();
+    // }, []);
 
-  // const Deletll =  async () => {
-  //   console.log("saad")
-  //   await deleteDoc(doc(db, "Todo"));
-  // }
+  // const [delt, setdelt] = useState(ids);
+  const Deletll = () => {
+    // const q = query(collection(db, "Todo"),);
+    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    //   querySnapshot.forEach(async(doc) => {
+    //     await deleteDoc(doc(db, "Todo", doc.id));
+    //   });
+    // });
+  }
   return (
     <>
       <div className="todos">
@@ -47,7 +63,7 @@ function Todo() {
           <div className="todosInput">
             <input type="text" ref={todoo} />
             <Button onClick={addTodo} />
-            <button>Delete All</button>
+            <button onClick={() => Deletll()}>Delete All</button>
           </div>
           <ul className="todo-Show">
             {list.map((val, ind) => (
