@@ -10,6 +10,4 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebas
     appId: "1:699760091192:web:b3e31857ce52621479c6cd"
   };
   const app = initializeApp(firebaseConfig);
-
-
   export const db = getFirestore();
