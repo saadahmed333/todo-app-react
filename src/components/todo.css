@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     background-color: #e3e9ff;
+    padding: 0px 20px;
 }
 .todos-div {
     margin: 5px;
@@ -60,7 +61,6 @@
 }
 .todo-Show li {
     list-style-type: none;
-    height: 100px;
     padding: 5px;
     background-color: #e3e9ff;
     color: #af7eeb;
@@ -72,20 +72,18 @@
     align-items: center;
     margin-bottom: 10px;
     border-radius: 30px;
-    /* padding-left: 20px; */
 }
 .todos-list {
     display: flex;
     align-items: center;
 }
 .value {
-    width: 180px;
+    width: 200px;
     font-size: 20px;
     display: flex;
     align-items: center;
-    white-space: nowrap;
-    flex-grow: inherit;
     height: auto;
+    word-break: break-all;
 }
 .todo-Show li .inde {
     font-size: 14px;
@@ -116,11 +114,8 @@
 .add-todo {
     display: flex;
     justify-content: center;
-    height: 20px;
-    position: relative;
 }
 .add-todo-Btn {
-    position: absolute;
     width: 100px;
     height: 50px;
     font-weight: bold;
@@ -134,4 +129,40 @@
 .add-todo-Btn:hover {
     background-color: #e3e9ff;
     color: #af7eeb;
+}
+
+
+
+@media only screen and (max-width: 430px) {
+    .todos-div {
+        width: 350px;
+    }
+    .value {
+        width: 150px;
+    }
+    .todosInput input {
+        width: 65%;
+    }
+}
+@media only screen and (max-width: 370px) {
+    .todos-div {
+        width: 320px;
+    }
+    .value {
+        width: 120px;
+    }
+    .todosInput input {
+        width: 60%;
+    }
+}
+@media only screen and (max-width: 340px) {
+    .todos-div {
+        width: 300px;
+    }
+    .value {
+        width: 100px;
+    }
+    .todosInput input {
+        width: 55%;
+    }
 }
