@@ -75,7 +75,6 @@ function Todo() {
         <div className="todosInput">
           <input type="text" ref={todoo} />
           <Button onClick={addTodo} />
-          {/* <button onClick={() => Deletll()}>Delete All</button> */}
         </div>
         <ul className="todo-Show">
           {list.map((val, ind) => (
